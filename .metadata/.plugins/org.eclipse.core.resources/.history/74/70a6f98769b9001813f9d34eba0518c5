@@ -1,0 +1,9 @@
+package phoneBook.Repository;
+
+import org.springframework.data.repository.CrudRepository;
+
+import phoneBook.businessObjects.Group;
+
+public interface GroupRepository  extends CrudRepository<Group, Integer> {
+
+}

@@ -1,0 +1,50 @@
+package phoneBook.Entities;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class PhoneBookXContact {
+	
+	@Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+	private Integer id;
+	private String contactInfo;
+	private String contactTypeId;
+	private String phoneBookId;
+	
+	public Integer getId() {
+		return id;
+	}
+	
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
+	public String getContactInfo() {
+		return contactInfo;
+	}
+	
+	public void setContactInfo(String contactInfo) {
+		this.contactInfo = contactInfo;
+	}
+	
+	public String getContactTypeId() {
+		return contactTypeId;
+	}
+	
+	public void setContactTypeId(String contactTypeId) {
+		this.contactTypeId = contactTypeId;
+	}
+	
+	public String getPhoneBookId() {
+		return phoneBookId;
+	}
+	
+	public void setPhoneBookId(String phoneBookId) {
+		this.phoneBookId = phoneBookId;
+	}
+
+}

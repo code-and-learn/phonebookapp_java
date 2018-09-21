@@ -1,0 +1,87 @@
+package phoneBook.DataAccess;
+
+import java.util.List;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import phoneBook.Contracts.BusinessObjects.IPhoneBook;
+import phoneBook.Contracts.DataAccess.IPhoneBookDA;
+import phoneBook.Contracts.ObjectFactory.IBusinessObjectFactory;
+import phoneBook.Entities.GroupXContact;
+import phoneBook.Entities.PhoneBook;
+import phoneBook.Repository.PhoneBookRepository;;
+
+@Component
+public class PhoneBookDA implements IPhoneBookDA {
+	
+	@Autowired
+	private PhoneBookRepository repository;
+	
+	@Autowired
+	IBusinessObjectFactory<IPhoneBook> businessObjectFactory;
+
+	@Override
+	public IPhoneBook Add(IPhoneBook obj) {
+		
+		ModelMapper modelMapper = new ModelMapper();
+		PhoneBook entity = modelMapper.map(obj, PhoneBook.class);
+		
+		repository.save(entity);
+		
+		obj.setId(entity.getId());
+		
+		return obj;
+		
+	}
+
+	@Override
+	public Boolean Update(IPhoneBook obj) {
+		
+		try
+		{
+			PhoneBook entity = repository.findById(obj.getId()).get();
+		
+			ModelMapper modelMapper = new ModelMapper();
+			modelMapper.map(obj, entity);
+		
+			repository.save(entity);
+			
+			return true;
+		}
+		catch (Exception e)
+		{
+			return false;
+		}
+		
+	}
+
+	@Override
+	public Boolean Delete(Integer id) {
+		
+		try
+		{
+			repository.deleteById(id);
+			return true;
+		}
+		catch (Exception e)
+		{
+			return false;
+		}
+		
+	}
+
+	@Override
+	public IPhoneBook GetDetails(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<IPhoneBook> GetAllForUser(Integer userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

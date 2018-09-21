@@ -1,0 +1,46 @@
+package phoneBook.BusinessLogic;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import phoneBook.Contracts.BusinessObjects.IPhoneBook;
+import phoneBook.Contracts.DataAccess.IPhoneBookDA;
+import phoneBook.Repository.PhoneBookRepository;;
+
+public class PhoneBookBL implements IPhoneBookDA {
+	
+	@Autowired
+	private PhoneBookRepository phoneBookRepository;
+
+	@Override
+	public IPhoneBook Add(IPhoneBook obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean Update(IPhoneBook obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean Delete(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IPhoneBook GetDetails(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<IPhoneBook> GetAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

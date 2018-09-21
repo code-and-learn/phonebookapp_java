@@ -1,0 +1,5 @@
+package phoneBook.Entities;
+
+public class User {
+
+}

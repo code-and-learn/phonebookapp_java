@@ -1,0 +1,20 @@
+package phoneBook.BusinessObjectFactories;
+
+import java.util.LinkedList;
+import java.util.List;
+
+import phoneBook.Contracts.BusinessObjects.IGroup;
+import phoneBook.Contracts.ObjectFactory.IBusinessObjectFactory;
+import phoneBook.businessObjects.Group;
+
+public class GroupFactory implements IBusinessObjectFactory<IGroup> {
+
+	public IGroup GetNewObject() {
+		return new Group();
+	}
+
+	public List<? extends IGroup> GetList() {
+		return new LinkedList<Group>();
+	}
+
+}

@@ -1,0 +1,12 @@
+package phoneBook.DataAccess;
+
+import phoneBook.Contracts.DataAccess.IContactType;
+
+public class ContactTypeDA implements IContactType {
+	
+	public phoneBook.Contracts.BusinessObjects.IContactType Add(phoneBook.Contracts.BusinessObjects.IContactType obj)
+	{
+		return obj;
+	}
+
+}

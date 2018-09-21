@@ -1,0 +1,40 @@
+package phoneBook.BusinessLogic;
+
+import java.util.List;
+
+import phoneBook.Contracts.BusinessLogic.IGroupXContactBL;
+import phoneBook.Contracts.BusinessObjects.IGroupXContact;
+
+public class GroupXContactBL implements IGroupXContactBL {
+
+	public IGroupXContact Add(IGroupXContact obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Boolean Update(IGroupXContact obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Boolean Delete(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public IGroupXContact GetDetails(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<IGroupXContact> GetAllContactsForGroup(Integer groupId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<IGroupXContact> GetAllGroupsForContact(Integer phoneBookId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;phoneBook.Contracts&apos; to &apos;phoneBook.Contracts.DataAccess&apos;&#x0A;- Original project: &apos;phoneBook.Contracts&apos;&#x0A;- Original element: &apos;phoneBook.Contracts/src/main/java/phoneBook.Contracts&apos;&#x0A;- Renamed element: &apos;phoneBook.Contracts/src/main/java/phoneBook.Contracts.DataAccess&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;phoneBook.Contracts&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src\/main\/java&lt;phoneBook.Contracts" name="phoneBook.Contracts.DataAccess" qualified="false" references="true" stamp="1537049161788" textual="false" version="1.0"/>
+</session>

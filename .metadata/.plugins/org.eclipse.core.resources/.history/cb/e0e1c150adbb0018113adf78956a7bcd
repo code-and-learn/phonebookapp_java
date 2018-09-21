@@ -1,0 +1,88 @@
+package phoneBook.RestService.Security;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
+import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
+import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
+import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
+
+@Configuration
+public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
+   private String clientid = "devglan-client";
+   private String clientSecret = "$2a$04$e/c1/RfsWuThaWFCrcCuJeoyvwCV0URN/6Pn9ZFlrtIWaU/vj/BfG";
+   private String privateKey = "MIIEowIBAAKCAQEArZ5b8gpO7melYj1eCH9f6NGDki1rmd/Q3tMR5pWVKXzyPKCd\n" + 
+   		"DVLWvBvum47VPZ5onsu4ypurR14Rz4mwIHFU7bLonBnDgknqCKmSDVW6b01P7IDj\n" + 
+   		"f9XO8ADE2t87S+oZsS+TTKbLNJN3pWLmQ3Yz93pPSOEUzjTDEyuIsCnuA8wzF7d3\n" + 
+   		"KpQOn30QJZpKdyJ3NhC6sIIxjAQOHgasIfzjfre0EhE6UtKKThiazY/pY2tqwJPS\n" + 
+   		"DTNNUSPx+bXSxQaqVHV+YbWF1H4X3bl0ywB4FvJPrrVu9oO77PvwTEWWj4hFtpNd\n" + 
+   		"gCfeJPUy75g9Za91qjgs4TK1cEQAKsW7LtvqGwIDAQABAoIBAFVreGlZUQRS0jfH\n" + 
+   		"YaBkqtdtXYJp/mqyh51Z05DTP5Qt+TCDBUIs46GhTIAUgi3S5j5alQx6EocGbVTi\n" + 
+   		"tVkA6XwZbgB/XIWZwB+K7mTJLPTd4NjHgSbAFxRWDIRzGEV9ZC6c7afk2E2B0Hf6\n" + 
+   		"dLf0TBUShDejJg1eQCwKWzHxLz2GRjIzLZVYdJ/Ax/zfGo7Jb7o8VpyzC/AdEwfU\n" + 
+   		"V90DgpwcP/LIY63s2aOk/f3y+q0q8AyTIiahtlnjncquryNL5Wx6bmbf/Ziwm9pC\n" + 
+   		"qXU9NByF7/pQR2U7OesvaCbA2yufImFs8GIAbKG3A9j4amcTV2guIgPKIKnlbAiN\n" + 
+   		"PGI2hMECgYEA4GEeY7+Dlg/HMSlaHT3rC34dg7Mso3Lu+Ho0kdhPWQydsTEHwOxo\n" + 
+   		"HwqA4kad+6F0JCiCw8Yl/M5fmi8nDzmq8piJFglq6cbKVTTGuGzcWjNe7aCI2ld9\n" + 
+   		"zEOejHYIE6sW8vaHE3MBCeGXC5Cdk2UdSiR6+o/1fiLEP0zVEraszDkCgYEAxhX0\n" + 
+   		"su8IpJN6fGVYOMzTtoLJck4Uy7cBj2yRKQtfvLCL7RnRPkfD4mI/9fyp5aBik2uM\n" + 
+   		"cfOPzLgKf6EL4BQ1424N68e+E86U83LwnDrGAe2oj8C/GQH1tvRl6AcTariI94mG\n" + 
+   		"coTvlNNkdhErm562EYQ79NnD1X0GIyROLXGmkPMCgYBSTk2/eTjjitYeinSr1VKq\n" + 
+   		"3JAnB0qQilBuhSVTem1g1OfjX4Dgm9d1y3yLhCvfadIYkWOmPMEigvE+tZ02UIkM\n" + 
+   		"hDeFBd9Z8bm2l61taUFLNRzVPdX1gbJ7gzJdg85iqJe6eAQEdmMjJMUrUNj8gFLG\n" + 
+   		"J6uUzcnXgxlJvv1J6AhqwQKBgQDDizkcysuFa/EmjAUjTVBSg5nJtTriP67SnyJN\n" + 
+   		"mmTQKJh5X1soWEAPY14wv1QY0tN9JFZoxz/VoHj8tUa71je8ZBBqCayicPSpv3W3\n" + 
+   		"RG3jyXD1OBlt3nlqOqm++/03BSRw+No4gvLfwC8UPq8F2Q9zC08Ez1R7lAhS+KwU\n" + 
+   		"QHVl8QKBgD97lxVn6e39x3vkq7oh3sQ0T3fMjESMm3Jh/XSGDe7JW4ruS2dAUOdV\n" + 
+   		"oRd12S6949banl74UCrqxUStEWA3J4Ej+hnNKCOyOucbgffiE+nSM20Rcekl9vdX\n" + 
+   		"Tb3l+c8kyFswJoGpQTzm5whzkAQINdR6PIcDsoDbYNfYfvzUf5Nd";
+   private String publicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArZ5b8gpO7melYj1eCH9f\n" + 
+   		"6NGDki1rmd/Q3tMR5pWVKXzyPKCdDVLWvBvum47VPZ5onsu4ypurR14Rz4mwIHFU\n" + 
+   		"7bLonBnDgknqCKmSDVW6b01P7IDjf9XO8ADE2t87S+oZsS+TTKbLNJN3pWLmQ3Yz\n" + 
+   		"93pPSOEUzjTDEyuIsCnuA8wzF7d3KpQOn30QJZpKdyJ3NhC6sIIxjAQOHgasIfzj\n" + 
+   		"fre0EhE6UtKKThiazY/pY2tqwJPSDTNNUSPx+bXSxQaqVHV+YbWF1H4X3bl0ywB4\n" + 
+   		"FvJPrrVu9oO77PvwTEWWj4hFtpNdgCfeJPUy75g9Za91qjgs4TK1cEQAKsW7Ltvq\n" + 
+   		"GwIDAQAB";
+
+   @Autowired
+   @Qualifier("authenticationManagerBean")
+   private AuthenticationManager authenticationManager;
+   
+   /*@Bean
+   public JwtAccessTokenConverter tokenEnhancer() {
+      JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+      converter.setSigningKey(privateKey);
+      converter.setVerifierKey(publicKey);
+      return converter;
+   }
+   
+   @Bean
+   public JwtTokenStore tokenStore() {
+      return new JwtTokenStore(tokenEnhancer());
+   }*/
+   
+   /*@Override
+   public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+      endpoints.authenticationManager(authenticationManager).tokenStore(tokenStore())
+      .accessTokenConverter(tokenEnhancer());
+   }*/
+   
+   @Override
+   public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+      security.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
+   }
+   
+   @Override
+   public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+      clients.inMemory().withClient(clientid).secret(clientSecret).scopes("read", "write")
+         .authorizedGrantTypes("password", "refresh_token").accessTokenValiditySeconds(20000)
+         .refreshTokenValiditySeconds(20000);
+
+   }
+} 

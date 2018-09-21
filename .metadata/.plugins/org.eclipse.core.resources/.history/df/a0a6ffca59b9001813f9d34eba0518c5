@@ -1,0 +1,13 @@
+package phoneBook.DataAccess;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import phoneBook.Contracts.DataAccess.IGroupXContactDA;
+import phoneBook.Repository.GroupXContactRepository;;
+
+public class GroupXContactDA implements IGroupXContactDA {
+	
+	@Autowired
+	private GroupXContactRepository groupXContactRepository;
+
+}

@@ -1,0 +1,9 @@
+package phoneBook.Contracts.ObjectFactory;
+
+public interface IBusinessObjectFactory<T> {
+
+	T GetNewObject();
+	
+	Iterable<T> GetList();
+	
+}

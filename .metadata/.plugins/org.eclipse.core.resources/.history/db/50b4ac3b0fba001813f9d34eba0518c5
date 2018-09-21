@@ -1,0 +1,22 @@
+package phoneBook.BusinessObjectFactories;
+
+import java.util.LinkedList;
+import java.util.List;
+
+import phoneBook.Contracts.BusinessObjects.IUser;
+import phoneBook.Contracts.ObjectFactory.IBusinessObjectFactory;
+import phoneBook.businessObjects.User;
+
+public class UserFactory implements IBusinessObjectFactory<IUser>  {
+
+	public IUser GetNewObject() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<? extends IUser> GetList() {
+		LinkedList<ContactType> list = new LinkedList<User>();	
+		return (LinkedList<IUser>)(List)list;
+	}
+
+}

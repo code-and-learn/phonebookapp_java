@@ -1,0 +1,93 @@
+package phoneBook.businessObjects;
+
+import java.util.List;
+
+import phoneBook.Contracts.BusinessObjects.IPhoneBook;
+import phoneBook.Contracts.BusinessObjects.IPhoneBookXContact;
+
+public class PhoneBook implements IPhoneBook {
+
+	private Integer id;
+	private String contactName;
+	private String company;
+	private String title;
+	private String address;
+	private boolean isFavorite;
+	private Integer userId;
+	private List<IPhoneBookXContact> contacts;
+	
+	public PhoneBook()
+	{
+		
+	}
+	
+	public PhoneBook(List<IPhoneBookXContact> contacts)
+	{
+		this.contacts = contacts;
+	}
+	
+	public List<IPhoneBookXContact> getContacts() {
+		return contacts;
+	}
+
+	public void setContacts(List<IPhoneBookXContact> contacts) {
+		this.contacts = contacts;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+	
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
+	public String getContactName() {
+		return contactName;
+	}
+	
+	public void setContactName(String contactName) {
+		this.contactName = contactName;
+	}
+	
+	public String getCompany() {
+		return company;
+	}
+	
+	public void setCompany(String company) {
+		this.company = company;
+	}
+	
+	public String getTitle() {
+		return title;
+	}
+	
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
+	public String getAddress() {
+		return address;
+	}
+	
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	
+	public boolean getIsFavorite() {
+		return isFavorite;
+	}
+	
+	public void setIsFavorite(boolean isFavorite) {
+		this.isFavorite = isFavorite;
+	}
+
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+	
+}

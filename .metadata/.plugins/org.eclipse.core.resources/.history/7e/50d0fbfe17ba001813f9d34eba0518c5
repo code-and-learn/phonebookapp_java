@@ -1,0 +1,20 @@
+package phoneBook.Contracts.DataAccess;
+
+import java.util.List;
+
+import phoneBook.Contracts.BusinessObjects.IGroup;
+import phoneBook.Contracts.BusinessObjects.IPhoneBook;
+
+public interface IGroupDA {
+
+	IGroup Add(IGroup obj);
+	
+	Boolean Update(IGroup obj);
+	
+	Boolean Delete(Integer id);
+	
+	IGroup GetDetails(Integer id);
+	
+	List<IGroup> GetAllForUser(Integer userId);
+	
+}

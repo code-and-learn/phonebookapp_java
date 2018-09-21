@@ -1,0 +1,12 @@
+package phoneBook.Contracts.ObjectFactory;
+
+import java.util.LinkedList;
+import java.util.List;
+
+public interface IBusinessObjectFactory<T> {
+
+	T GetNewObject();
+	
+	LinkedList<T> GetList();
+	
+}

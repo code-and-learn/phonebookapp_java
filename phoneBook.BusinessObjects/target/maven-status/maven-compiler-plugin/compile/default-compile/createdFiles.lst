@@ -1,0 +1,12 @@
+phoneBook/businessObjects/PhoneBook.class
+phoneBook/businessObjects/Group.class
+phoneBook/businessObjects/ContactType.class
+phoneBook/businessObjects/User.class
+phoneBook/BusinessObjectFactories/ContactTypeFactory.class
+phoneBook/businessObjects/PhoneBookXContact.class
+phoneBook/businessObjects/GroupXContact.class
+phoneBook/BusinessObjectFactories/PhoneBookFactory.class
+phoneBook/BusinessObjectFactories/PhoneBookXContactFactory.class
+phoneBook/BusinessObjectFactories/GroupFactory.class
+phoneBook/BusinessObjectFactories/GroupXContactFactory.class
+phoneBook/BusinessObjectFactories/UserFactory.class

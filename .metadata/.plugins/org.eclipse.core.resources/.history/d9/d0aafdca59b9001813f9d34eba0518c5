@@ -1,0 +1,13 @@
+package phoneBook.DataAccess;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import phoneBook.Contracts.DataAccess.IPhoneBookXContactDA;
+import phoneBook.Repository.PhoneBookXContactRepository;
+
+public class PhoneBookXContactDA implements IPhoneBookXContactDA {
+	
+	@Autowired
+	private PhoneBookXContactRepository phoneBookXContactRepository;
+
+}

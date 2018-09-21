@@ -1,0 +1,52 @@
+package phoneBook.DataAccess;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import phoneBook.Contracts.BusinessObjects.IGroupXContact;
+import phoneBook.Contracts.DataAccess.IGroupXContactDA;
+import phoneBook.Repository.GroupXContactRepository;;
+
+public class GroupXContactDA implements IGroupXContactDA {
+	
+	@Autowired
+	private GroupXContactRepository groupXContactRepository;
+
+	@Override
+	public IGroupXContact Add(IGroupXContact obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean Update(IGroupXContact obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean Delete(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IGroupXContact GetDetails(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<IGroupXContact> GetAllContactsForGroup(Integer groupId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<IGroupXContact> GetAllGroupsForContact(Integer phoneBookId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

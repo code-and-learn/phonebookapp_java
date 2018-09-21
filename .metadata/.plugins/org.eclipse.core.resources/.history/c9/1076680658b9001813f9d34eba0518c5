@@ -1,0 +1,5 @@
+package phoneBook.Contracts.DataAccess;
+
+public interface IPhoneBookXContact {
+
+}

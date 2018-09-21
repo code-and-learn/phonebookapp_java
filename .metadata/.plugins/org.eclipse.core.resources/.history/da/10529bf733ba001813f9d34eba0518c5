@@ -1,0 +1,18 @@
+package phoneBook.RestService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
+
+import phoneBook.Contracts.BusinessLogic.IUserBL;
+import phoneBook.Contracts.DataAccess.IUserDA;
+
+@RestController
+public class UserController {
+	
+	@Autowired
+    IUserDA dataAccess;
+	
+	@Autowired
+	IUserBL businessLogic;
+
+}

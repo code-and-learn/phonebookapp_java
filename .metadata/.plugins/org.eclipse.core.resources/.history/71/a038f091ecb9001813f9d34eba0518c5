@@ -1,0 +1,11 @@
+package phoneBook.Contracts.ObjectFactory;
+
+import java.util.List;
+
+public interface IBusinessObjectFactory<T> {
+
+	T GetNewObject();
+	
+	List<? extends T> GetList();
+	
+}

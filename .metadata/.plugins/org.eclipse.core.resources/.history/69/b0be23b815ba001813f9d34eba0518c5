@@ -1,0 +1,49 @@
+package phoneBook.RestService;
+
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import phoneBook.Contracts.BusinessLogic.IPhoneBookBL;
+import phoneBook.Contracts.BusinessObjects.IPhoneBook;
+import phoneBook.Contracts.DataAccess.IPhoneBookDA;
+import phoneBook.RestService.Models.RestServiceModel;
+
+@RestController
+public class PhoneBookController {
+	
+	@Autowired
+    IPhoneBookDA dataAccess;
+	
+	@Autowired
+	IPhoneBookBL businessLogic;
+	
+	// Add a new entry
+	
+	// Get all contacts list for user
+	@RequestMapping("/phonebook/getall")
+    public HttpEntity<RestServiceModel<List<IPhoneBook>>> getAllContactTypes(@RequestParam(value = "userid", required = true) Integer userid) {
+
+        List<IPhoneBook> businessObjectList = businessLogic.GetAllForUser(userid);
+        
+        RestServiceModel<List<IPhoneBook>> restModel = new RestServiceModel<>();
+        restModel.Model = businessObjectList;
+        restModel.add(linkTo(methodOn(ContactTypeController.class).getAllContactTypes()).withSelfRel());
+
+        return new ResponseEntity<>(restModel, HttpStatus.OK);
+    }
+	
+	// Delete a contact list
+	
+	// Update a contact list
+
+}

@@ -1,0 +1,5 @@
+package phoneBook.Contracts.BusinessLogic;
+
+public interface IUserBL {
+
+}

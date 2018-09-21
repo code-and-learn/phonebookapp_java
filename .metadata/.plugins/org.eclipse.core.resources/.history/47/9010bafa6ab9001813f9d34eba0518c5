@@ -1,0 +1,19 @@
+package phoneBook.Contracts.BusinessLogic;
+
+import java.util.List;
+
+import phoneBook.Contracts.BusinessObjects.IPhoneBook;
+
+public interface IPhoneBookDA {
+	
+	IPhoneBook Add(IPhoneBook obj);
+	
+	Boolean Update(IPhoneBook obj);
+	
+	Boolean Delete(Integer id);
+	
+	IPhoneBook GetDetails(Integer id);
+	
+	List<IPhoneBook> GetAll();
+
+}

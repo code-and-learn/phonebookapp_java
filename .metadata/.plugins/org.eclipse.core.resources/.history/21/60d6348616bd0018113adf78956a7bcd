@@ -1,0 +1,21 @@
+package phoneBook.Contracts.BusinessObjects;
+
+public interface IPhoneBookXContact {
+
+	Integer getId();
+
+	void setId(Integer id);
+
+	String getContactInfo();
+
+	void setContactInfo(String contactInfo);
+
+	String getContactTypeId();
+
+	void setContactTypeId(String contactTypeId);
+
+	String getPhoneBookId();
+
+	void setPhoneBookId(String phoneBookId);
+
+}

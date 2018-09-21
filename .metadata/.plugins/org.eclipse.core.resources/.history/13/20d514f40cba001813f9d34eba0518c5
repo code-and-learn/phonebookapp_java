@@ -1,0 +1,103 @@
+package phoneBook.DataAccess;
+
+import java.util.List;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import phoneBook.Contracts.BusinessObjects.IContactType;
+import phoneBook.Contracts.BusinessObjects.IGroupXContact;
+import phoneBook.Contracts.DataAccess.IGroupXContactDA;
+import phoneBook.Contracts.ObjectFactory.IBusinessObjectFactory;
+import phoneBook.Entities.ContactType;
+import phoneBook.Entities.Group;
+import phoneBook.Entities.GroupXContact;
+import phoneBook.Repository.GroupXContactRepository;;
+
+@Component
+public class GroupXContactDA implements IGroupXContactDA {
+	
+	@Autowired
+	private GroupXContactRepository repository;
+	
+	@Autowired
+	IBusinessObjectFactory<IGroupXContact> businessObjectFactory;
+
+
+	@Override
+	public IGroupXContact Add(IGroupXContact obj) {
+		
+		ModelMapper modelMapper = new ModelMapper();
+		GroupXContact entity = modelMapper.map(obj, GroupXContact.class);
+		
+		repository.save(entity);
+		
+		obj.setId(entity.getId());
+		
+		return obj;
+	}
+
+	@Override
+	public Boolean Update(IGroupXContact obj) {
+		
+		try
+		{
+			GroupXContact entity = repository.findById(obj.getId()).get();
+		
+			ModelMapper modelMapper = new ModelMapper();
+			modelMapper.map(obj, entity);
+		
+			repository.save(entity);
+			
+			return true;
+		}
+		catch (Exception e)
+		{
+			return false;
+		}
+		
+	}
+
+	@Override
+	public Boolean Delete(Integer id) {
+		
+		try
+		{
+			repository.deleteById(id);
+			return true;
+		}
+		catch (Exception e)
+		{
+			return false;
+		}
+		
+	}
+
+	@Override
+	public IGroupXContact GetDetails(Integer id) {
+		
+		IGroupXContact businessObject = businessObjectFactory.GetNewObject();
+		
+		GroupXContact entity = repository.findById(id).get();
+		
+		ModelMapper modelMapper = new ModelMapper();
+		modelMapper.map(entity, businessObject);
+		
+		return businessObject;
+		
+	}
+
+	@Override
+	public List<IGroupXContact> GetAllContactsForGroup(Integer groupId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<IGroupXContact> GetAllGroupsForContact(Integer phoneBookId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,5 @@
+package phoneBook.Repository;
+
+public interface UserRepository {
+
+}

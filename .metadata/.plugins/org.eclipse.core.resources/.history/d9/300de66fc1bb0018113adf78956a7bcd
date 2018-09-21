@@ -1,0 +1,111 @@
+package phoneBook.RestService;
+
+import java.net.URI;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import phoneBook.Contracts.BusinessLogic.IUserBL;
+import phoneBook.Contracts.BusinessObjects.IUser;
+import phoneBook.Contracts.DataAccess.IUserDA;
+import phoneBook.RestService.Security.ApiResponse;
+import phoneBook.RestService.Security.JwtAuthenticationResponse;
+import phoneBook.RestService.Security.JwtTokenProvider;
+import phoneBook.RestService.Security.LoginRequest;
+import phoneBook.RestService.Security.SignUpRequest;
+import phoneBook.businessObjects.User;
+
+@RestController
+@RequestMapping("/api/auth")
+public class AuthController {
+
+    @Autowired
+    AuthenticationManager authenticationManager;
+    
+    @Autowired
+    IUserDA dataAccess;
+	
+	@Autowired
+	IUserBL businessLogic;
+
+    /*@Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    RoleRepository roleRepository;*/
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
+    @Autowired
+    JwtTokenProvider tokenProvider;
+
+    @PostMapping("/signin")
+    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        loginRequest.getUsernameOrEmail(),
+                        loginRequest.getPassword()
+                )
+        );
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        
+        String jwt = tokenProvider.generateToken(authentication);
+        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
+    }
+
+    @PostMapping("/signup")
+    public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
+        
+    	/*if(userRepository.existsByUsername(signUpRequest.getUsername())) {
+            return new ResponseEntity(new ApiResponse(false, "Username is already taken!"),
+                    HttpStatus.BAD_REQUEST);
+        }
+
+        if(userRepository.existsByEmail(signUpRequest.getEmail())) {
+            return new ResponseEntity(new ApiResponse(false, "Email Address already in use!"),
+                    HttpStatus.BAD_REQUEST);
+        }
+
+        // Creating user's account
+        User user = new User(signUpRequest.getName(), signUpRequest.getUsername(),
+                signUpRequest.getEmail(), signUpRequest.getPassword());
+
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
+                .orElseThrow(() -> new AppException("User Role not set."));
+
+        user.setRoles(Collections.singleton(userRole));
+
+        User result = userRepository.save(user);
+
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentContextPath().path("/api/users/{username}")
+                .buildAndExpand(result.getUsername()).toUri();*/
+    	
+    	// Creating user's account
+        IUser user = new User();
+        user.setPassword(passwordEncoder.encode(signUpRequest.getPassword()));
+        user.setUsername(signUpRequest.getUsername());
+
+        user = businessLogic.Add(user);
+
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentContextPath().path("/api/users/{username}")
+                .buildAndExpand(user.getUsername()).toUri();
+
+		return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
+    }
+}

@@ -1,0 +1,7 @@
+package phoneBook.Repository;
+
+import phoneBook.Entities.ContactType;
+
+public class ContactTypeRepository extends CrudRepository<ContactType, Integer> {
+
+}

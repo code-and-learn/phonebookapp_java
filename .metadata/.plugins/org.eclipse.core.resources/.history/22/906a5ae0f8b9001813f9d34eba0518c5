@@ -1,0 +1,5 @@
+package phoneBook.Contracts.BusinessObjects;
+
+public interface IUser {
+
+}

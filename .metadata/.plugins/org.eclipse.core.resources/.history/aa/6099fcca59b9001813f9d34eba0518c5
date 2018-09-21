@@ -1,0 +1,13 @@
+package phoneBook.DataAccess;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import phoneBook.Contracts.DataAccess.IGroupDA;
+import phoneBook.Repository.GroupRepository;;
+
+public class GroupDA implements IGroupDA {
+
+	@Autowired
+	private GroupRepository groupRepository;
+	
+}

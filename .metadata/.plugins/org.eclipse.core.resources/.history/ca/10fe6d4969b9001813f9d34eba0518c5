@@ -1,0 +1,81 @@
+package phoneBook.DataAccess;
+
+import java.util.List;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import phoneBook.Contracts.BusinessObjects.IContactType;
+import phoneBook.Contracts.DataAccess.IContactTypeDA;
+import phoneBook.Entities.ContactType;
+import phoneBook.Repository.ContactTypeRepository;
+
+public class ContactTypeDA implements IContactTypeDA {
+	
+	@Autowired
+	private ContactTypeRepository contactTypeRepository;
+
+	@Override
+	public IContactType Add(IContactType obj) {
+		// TODO Auto-generated method stub
+		
+		ModelMapper modelMapper = new ModelMapper();
+		ContactType contactType = modelMapper.map(obj, ContactType.class);
+		
+		contactTypeRepository.save(contactType);
+		
+		obj.setId(contactType.getId());
+		
+		return obj;
+	}
+
+	@Override
+	public Boolean Update(IContactType obj) {
+	
+		try
+		{
+			ContactType contactType = contactTypeRepository.findById(obj.getId()).get();
+		
+			ModelMapper modelMapper = new ModelMapper();
+			modelMapper.map(obj, contactType);
+		
+			contactTypeRepository.save(contactType);
+			
+			return true;
+		}
+		catch (Exception e)
+		{
+			return false;
+		}
+		
+	}
+
+	@Override
+	public Boolean Delete(Integer id) {
+		
+		try
+		{
+			contactTypeRepository.deleteById(id);
+			return true;
+		}
+		catch (Exception e)
+		{
+			return false;
+		}
+		
+	}
+
+	@Override
+	public IContactType GetDetails(Integer id) {
+		
+		
+		return null;
+	}
+
+	@Override
+	public List<IContactType> GetAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

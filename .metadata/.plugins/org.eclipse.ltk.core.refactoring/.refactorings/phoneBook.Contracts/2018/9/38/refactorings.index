@@ -1,0 +1,12 @@
+1537064816993	Rename type 'IGroupXContact'
+1537064826640	Rename type 'IPhoneBook'
+1537064835060	Rename type 'IPhoneBookXContact'
+1537064841948	Rename compilation unit 'IContactType.java'
+1537064849111	Rename compilation unit 'IGroup.java'
+1537072936085	Copy compilation units
+1537072948819	Rename type 'IContactTypeDA'
+1537072959100	Rename type 'IGroupDA'
+1537072969735	Rename type 'IGroupXContactDA'
+1537072975903	Rename type 'IPhoneBookDA'
+1537072982233	Rename type 'IPhoneBookXContactDA'
+1537132966643	Delete element

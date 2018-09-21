@@ -1,0 +1,13 @@
+package phoneBook.Repository;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+
+import phoneBook.Entities.User;
+
+public interface UserRepository extends CrudRepository<User, Integer>  {
+
+	@Query("SELECT * FROM Users WHERE username = :username")
+	User GetByUsername(String username);
+	
+}

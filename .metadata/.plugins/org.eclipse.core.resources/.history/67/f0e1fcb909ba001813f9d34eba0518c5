@@ -1,0 +1,58 @@
+package phoneBook.DataAccess;
+
+import java.util.List;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import phoneBook.Contracts.BusinessObjects.IPhoneBook;
+import phoneBook.Contracts.DataAccess.IPhoneBookDA;
+import phoneBook.Entities.PhoneBook;
+import phoneBook.Repository.PhoneBookRepository;;
+
+@Component
+public class PhoneBookDA implements IPhoneBookDA {
+	
+	@Autowired
+	private PhoneBookRepository phoneBookRepository;
+
+	@Override
+	public IPhoneBook Add(IPhoneBook obj) {
+		
+		ModelMapper modelMapper = new ModelMapper();
+		PhoneBook entity = modelMapper.map(obj, PhoneBook.class);
+		
+		phoneBookRepository.save(entity);
+		
+		obj.setId(entity.getId());
+		
+		return obj;
+		
+	}
+
+	@Override
+	public Boolean Update(IPhoneBook obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean Delete(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IPhoneBook GetDetails(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<IPhoneBook> GetAllForUser(Integer userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

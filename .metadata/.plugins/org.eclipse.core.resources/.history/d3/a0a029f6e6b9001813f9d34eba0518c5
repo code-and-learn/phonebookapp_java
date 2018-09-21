@@ -1,0 +1,20 @@
+package phoneBook.BusinessObjectFactories;
+
+import java.util.LinkedList;
+import java.util.List;
+
+import phoneBook.Contracts.BusinessObjects.IPhoneBook;
+import phoneBook.Contracts.ObjectFactory.IBusinessObjectFactory;
+import phoneBook.businessObjects.PhoneBook;
+
+public class PhoneBookFactory implements IBusinessObjectFactory<IPhoneBook> {
+
+	public IPhoneBook GetNewObject() {
+		return new PhoneBook();
+	}
+
+	public List<? extends IPhoneBook> GetList() {
+		return new LinkedList<PhoneBook>();
+	}
+
+}

@@ -1,0 +1,92 @@
+package phoneBook.RestService;
+
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import phoneBook.Contracts.BusinessLogic.IGroupBL;
+import phoneBook.Contracts.BusinessObjects.IGroup;
+import phoneBook.Contracts.DataAccess.IGroupDA;
+import phoneBook.RestService.Models.RestServiceModel;
+
+@RestController
+public class GroupController {
+	
+	@Autowired
+    IGroupDA dataAccess;
+	
+	@Autowired
+	IGroupBL businessLogic;
+	
+	// Create a new group
+	@RequestMapping(method = RequestMethod.POST, value="/groups/createnew")
+	public HttpEntity<RestServiceModel<IGroup>> createGroup(IGroup group)
+	{
+		IGroup newGroup = businessLogic.Add(group);
+		
+		RestServiceModel<IGroup> restModel = new RestServiceModel<>();
+        restModel.Model = newGroup;
+        restModel.add(linkTo(methodOn(GroupController.class).getGroupDetails(newGroup.getId())).withSelfRel());
+
+        return new ResponseEntity<>(restModel, HttpStatus.OK);
+	}
+	
+	// Update group details
+	@RequestMapping(method = RequestMethod.PUT, value="/groups/updategroup")
+	public HttpEntity<RestServiceModel<IGroup>> updateGroup(IGroup group)
+	{
+		Boolean result = businessLogic.Update(group);
+		
+		RestServiceModel<IGroup> restModel = new RestServiceModel<>();
+        restModel.Model = group;
+        restModel.add(linkTo(methodOn(GroupController.class).getGroupDetails(group.getId())).withSelfRel());
+
+        return new ResponseEntity<>(restModel, HttpStatus.OK);
+	}
+	
+	// Delete contact from the group
+	@RequestMapping(method = RequestMethod.DELETE, value="/groups/deletegroup")
+	public HttpStatus deleteGroup(Integer groupid)
+	{
+		Boolean result = businessLogic.Delete(groupid);
+        return HttpStatus.OK;
+	}
+	
+	// Get group details
+	@RequestMapping("/groups/getdetails")
+    public HttpEntity<RestServiceModel<IGroup>> getGroupDetails(@RequestParam(value = "groupid", required = true) Integer groupid) {
+
+        IGroup group = businessLogic.GetDetails(groupid);
+        
+        RestServiceModel<IGroup> restModel = new RestServiceModel<>();
+        restModel.Model = group;
+        restModel.add(linkTo(methodOn(GroupController.class).getGroupDetails(groupid)).withSelfRel());
+
+        return new ResponseEntity<>(restModel, HttpStatus.OK);
+    }
+	
+	// Get all groups for the user
+	@RequestMapping("/groups/getallgroups")
+    public HttpEntity<RestServiceModel<List<IGroup>>> getAllGroupsForUser(@RequestParam(value = "userid", required = true) Integer userid) {
+
+        List<IGroup> businessObjectList = businessLogic.GetAllForUser(userid);
+        
+        RestServiceModel<List<IGroup>> restModel = new RestServiceModel<>();
+        restModel.Model = businessObjectList;
+        restModel.add(linkTo(methodOn(ContactTypeController.class).getAllContactTypes()).withSelfRel());
+
+        return new ResponseEntity<>(restModel, HttpStatus.OK);
+    }
+	
+	// Add contact to the group
+}

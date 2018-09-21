@@ -1,0 +1,9 @@
+package phoneBook.Repository;
+
+import org.springframework.data.repository.CrudRepository;
+
+import phoneBook.Entities.PhoneBook;
+
+public interface PhoneBookRepository extends CrudRepository<PhoneBook, Integer> {
+
+}

@@ -1,0 +1,15 @@
+1537075679118	Move 'resources' to 'main'
+1537142978320	Rename package 'hello'
+1537167214802	Delete element
+1537167582357	Rename type 'UserServiceImplementation'
+1537321369347	Delete element
+1537374616521	Delete element
+1537506571300	Rename type 'JwtAuthenticationEntryPoint'
+1537506603427	Rename type 'JwtAuthenticationFilter'
+1537506618410	Rename type 'JwtAuthenticationResponse'
+1537506637795	Rename type 'JwtTokenProvider'
+1537524102855	Delete element
+1537549408446	Delete elements
+1537549448149	Delete element
+1537549456091	Delete element
+1537549515160	Delete element

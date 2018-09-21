@@ -1,0 +1,11 @@
+package phoneBook.Repository;
+
+import org.springframework.data.repository.CrudRepository;
+
+import phoneBook.Entities.User;
+
+public interface UserRepository extends CrudRepository<User, Integer>  {
+
+	User GetByUsername(String username);
+	
+}

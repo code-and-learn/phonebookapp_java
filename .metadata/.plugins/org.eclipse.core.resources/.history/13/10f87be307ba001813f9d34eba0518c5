@@ -1,0 +1,36 @@
+package phoneBook.BusinessLogic;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import phoneBook.Contracts.BusinessLogic.IGroupBL;
+import phoneBook.Contracts.BusinessObjects.IGroup;
+import phoneBook.Contracts.DataAccess.IGroupDA;
+
+public class GroupBL implements IGroupBL {
+
+	@Autowired
+	IGroupDA _groupDA;
+	
+	public IGroup Add(IGroup obj) {
+		return _groupDA.Add(obj);
+	}
+
+	public Boolean Update(IGroup obj) {
+		return _groupDA.Update(obj);
+	}
+
+	public Boolean Delete(Integer id) {
+		return _groupDA.Delete(id);
+	}
+
+	public IGroup GetDetails(Integer id) {
+		return _groupDA.GetDetails(id);
+	}
+
+	public List<IGroup> GetAllForUser(Integer userId) {
+		return _groupDA.GetAllForUser(userId);
+	}
+	
+}

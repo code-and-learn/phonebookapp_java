@@ -1,0 +1,13 @@
+package phoneBook.Contracts.ObjectFactory;
+
+import java.util.LinkedList;
+
+import phoneBook.Contracts.BusinessObjects.IContactType;
+
+public interface IContactTypeFactory {
+	
+	IContactType GetNewObject();
+	
+	LinkedList<IContactType> GetList();
+
+}

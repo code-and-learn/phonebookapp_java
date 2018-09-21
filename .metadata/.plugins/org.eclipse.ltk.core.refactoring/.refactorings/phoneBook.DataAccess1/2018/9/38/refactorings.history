@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move 3 packages to &apos;gs-accessing-data-mysql-complete/src/main/java&apos;&#x0A;- Original project: &apos;phoneBook.DataAccess&apos;&#x0A;- Destination element: &apos;gs-accessing-data-mysql-complete/src/main/java&apos;&#x0A;- Original elements:&#x0A;     phoneBook.DataAccess/src/main/java/phoneBook.Entities&#x0A;     phoneBook.DataAccess/src/main/java/phoneBook.Repository&#x0A;     phoneBook.DataAccess/src/main/java/phoneBook.DataAccess&#x0A;- Update references to refactored element" description="Move packages" destination="=gs-accessing-data-mysql-complete/src\/main\/java" element1="/src\/main\/java&lt;phoneBook.Entities" element2="/src\/main\/java&lt;phoneBook.Repository" element3="/src\/main\/java&lt;phoneBook.DataAccess" flags="589830" fragments="3" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.movePackages" stamp="1537064004637" version="1.0"/>
+</session>

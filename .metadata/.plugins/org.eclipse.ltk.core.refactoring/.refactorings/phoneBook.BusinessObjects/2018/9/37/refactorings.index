@@ -1,0 +1,7 @@
+1537048824741	Rename package 'businessObjects'
+1537049264842	Extract interface 'IContactType'
+1537049345413	Extract interface 'IGroup'
+1537049407171	Extract interface 'IGroupXContact'
+1537049435235	Extract interface 'IPhoneBook'
+1537049467998	Extract interface 'IPhoneBookXContact'
+1537049481891	Move compilation units

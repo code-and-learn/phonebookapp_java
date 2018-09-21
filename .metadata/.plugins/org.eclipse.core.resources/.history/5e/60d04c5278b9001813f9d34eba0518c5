@@ -1,0 +1,11 @@
+package phoneBook.Repository;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Component;
+
+import phoneBook.Entities.ContactType;
+
+@Component
+public interface ContactTypeRepository extends CrudRepository<ContactType, Integer> {
+
+}

@@ -1,0 +1,32 @@
+package phoneBook.DataAccess;
+
+import phoneBook.Contracts.BusinessObjects.IUser;
+import phoneBook.Contracts.DataAccess.IUserDA;
+
+public class UserDA implements IUserDA {
+
+	@Override
+	public IUser Add(IUser obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean Update(IUser obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean Delete(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IUser GetDetails(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

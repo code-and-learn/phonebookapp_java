@@ -1,0 +1,18 @@
+package phoneBook.DataAccess;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import phoneBook.Contracts.DataAccess.IContactType;
+import phoneBook.Repository.ContactTypeRepository;
+
+public class ContactTypeDA implements IContactType {
+	
+	@Autowired
+	private ContactTypeRepository contactTypeRepository;
+	
+	public phoneBook.Contracts.BusinessObjects.IContactType Add(phoneBook.Contracts.BusinessObjects.IContactType obj)
+	{
+		return obj;
+	}
+
+}

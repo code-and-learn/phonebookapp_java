@@ -1,0 +1,36 @@
+package phoneBook.businessObjects;
+
+public class ContactType implements IContactType {
+	
+	private Integer id;
+	private String name;
+	
+	/* (non-Javadoc)
+	 * @see phoneBook.businessObjects.IContactType#getId()
+	 */
+	public Integer getId() {
+		return id;
+	}
+	
+	/* (non-Javadoc)
+	 * @see phoneBook.businessObjects.IContactType#setId(java.lang.Integer)
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
+	/* (non-Javadoc)
+	 * @see phoneBook.businessObjects.IContactType#getName()
+	 */
+	public String getName() {
+		return name;
+	}
+	
+	/* (non-Javadoc)
+	 * @see phoneBook.businessObjects.IContactType#setName(java.lang.String)
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+}

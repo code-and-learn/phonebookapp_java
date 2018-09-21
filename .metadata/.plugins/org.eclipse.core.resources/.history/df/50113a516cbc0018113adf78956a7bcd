@@ -1,0 +1,23 @@
+package phoneBook.Repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import phoneBook.Entities.PhoneBook;
+import phoneBook.Entities.User;
+
+public interface PhoneBookRepository extends JpaRepository<PhoneBook, Integer> {
+	
+	@Query("SELECT\n" + 
+			" pb \n" + 
+			" FROM\n" + 
+			"  PhoneBook as pb \n" + 
+			"  INNER JOIN GroupXContacts as gxc ON gxc.PhoneBookId = pb.Id\n" + 
+			"  WHERE\n" + 
+			"  gxc.GroupId = :groupId")
+	List<PhoneBook> GetAllContactsInGroup(@Param("groupId")Integer groupid);
+
+}

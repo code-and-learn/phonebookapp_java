@@ -1,0 +1,5 @@
+package phoneBook.businessObjects;
+
+public class User {
+
+}

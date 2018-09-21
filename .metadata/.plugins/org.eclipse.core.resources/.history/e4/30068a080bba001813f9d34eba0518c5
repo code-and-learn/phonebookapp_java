@@ -1,0 +1,57 @@
+package phoneBook.DataAccess;
+
+import java.util.List;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import phoneBook.Contracts.BusinessObjects.IGroup;
+import phoneBook.Contracts.DataAccess.IGroupDA;
+import phoneBook.Entities.Group;
+import phoneBook.Repository.GroupRepository;;
+
+@Component
+public class GroupDA implements IGroupDA {
+
+	@Autowired
+	private GroupRepository repository;
+
+	@Override
+	public IGroup Add(IGroup obj) {
+		
+		ModelMapper modelMapper = new ModelMapper();
+		Group entity = modelMapper.map(obj, Group.class);
+		
+		repository.save(entity);
+		
+		obj.setId(entity.getId());
+		
+		return obj;
+	}
+
+	@Override
+	public Boolean Update(IGroup obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean Delete(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IGroup GetDetails(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<IGroup> GetAllForUser(Integer userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

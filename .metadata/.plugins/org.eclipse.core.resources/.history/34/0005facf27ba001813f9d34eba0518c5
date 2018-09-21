@@ -1,0 +1,49 @@
+package phoneBook.RestService;
+
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import phoneBook.Contracts.BusinessLogic.IGroupBL;
+import phoneBook.Contracts.BusinessObjects.IGroup;
+import phoneBook.Contracts.DataAccess.IGroupDA;
+import phoneBook.RestService.Models.RestServiceModel;
+
+@RestController
+public class GroupController {
+	
+	@Autowired
+    IGroupDA dataAccess;
+	
+	@Autowired
+	IGroupBL businessLogic;
+	
+	// Create a new group
+	
+	// Add contact to the group
+	
+	// Delete contact from the group
+	
+	// Get all groups for the user
+	@RequestMapping("/groups/getallgroups")
+    public HttpEntity<RestServiceModel<List<IGroup>>> getAllGroupsForUser(@RequestParam(value = "userid", required = true) Integer userid) {
+
+        List<IGroup> businessObjectList = businessLogic.GetAllForUser(userid);
+        
+        RestServiceModel<List<IGroup>> restModel = new RestServiceModel<>();
+        restModel.Model = businessObjectList;
+        restModel.add(linkTo(methodOn(ContactTypeController.class).getAllContactTypes()).withSelfRel());
+
+        return new ResponseEntity<>(restModel, HttpStatus.OK);
+    }
+
+}

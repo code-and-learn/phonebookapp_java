@@ -1,0 +1,6 @@
+phoneBook/BusinessLogic/UserBL.class
+phoneBook/BusinessLogic/PhoneBookBL.class
+phoneBook/BusinessLogic/PhoneBookXContactBL.class
+phoneBook/BusinessLogic/ContactTypeBL.class
+phoneBook/BusinessLogic/GroupBL.class
+phoneBook/BusinessLogic/GroupXContactBL.class
