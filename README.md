@@ -4,6 +4,8 @@
 
 http://pbangularapp.s3-website.ca-central-1.amazonaws.com
 
+### Test user : demo, password : Password123!
+
 ## Please remove the end Home in the URL if it shows a 404 error on mobile browser.
 
 # MySql database
