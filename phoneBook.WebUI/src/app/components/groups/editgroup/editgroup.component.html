@@ -1,0 +1,21 @@
+<h2>Edit Group</h2>
+             
+<form (ngSubmit)="submit()">
+  <table class="table table-striped">
+    <tr>
+      <th>Name</th>
+      <td><input type="text" class="form-control" name="name" [(ngModel)]="group.name" id="name"></td>
+    </tr>
+      <tr>
+        <th>Description</th>
+        <td><input type="text" class="form-control" id="description" name="description" [(ngModel)]="group.description"></td>
+      </tr>
+      
+      
+      <tr>
+        <th></th>
+        <td><button class="btn btn-primary" type="submit">Edit Group</button>
+          &nbsp;<a [routerLink]="['/Groups']" type="button" class="btn btn-default">Back</a></td>
+      </tr>
+  </table>
+</form>

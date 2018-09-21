@@ -1,0 +1,28 @@
+<h3>My Contact Groups</h3>
+  
+<a [routerLink]="['/Add-Group']" type="button" class="btn btn-info">Add New Group</a>
+            
+  <table class="table table-striped" *ngIf="groups?.length > 0">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let group of groups">
+
+        <tr>
+            <td>{{group.name}}</td>
+            <td>{{group.description}}</td>
+            <td>
+            <a [routerLink]="['/Group-Contacts', group.id]" type="button" class="btn btn-primary">View Contacts</a>
+          &nbsp; <a [routerLink]="['/Edit-Group', group.id]" type="button" class="btn btn-danger">Edit</a></td>
+          </tr>
+
+    </tbody>
+  </table>
+
+    <div class="alert alert-info" style="margin-top:20px;" *ngIf="groups?.length == 0">
+        No group created yet. Create some groups to see them here.
+      </div>

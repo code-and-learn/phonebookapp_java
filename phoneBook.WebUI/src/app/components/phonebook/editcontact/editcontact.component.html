@@ -1,0 +1,28 @@
+<h2>Edit Contact</h2>
+             
+<form (ngSubmit)="submit()">
+  <table class="table table-striped">
+    <tr>
+      <th>Name</th>
+      <td><input type="text" class="form-control" name="contactName" [(ngModel)]="contact.contactName" id="contactName"></td>
+    </tr>
+      <tr>
+        <th>Title</th>
+        <td><input type="text" class="form-control" id="title" name="title" [(ngModel)]="contact.title"></td>
+      </tr>
+      <tr>
+        <th>Address</th>
+        <td><input type="text" class="form-control" id="address" name="address" [(ngModel)]="contact.address"></td>
+      </tr>
+      <tr>
+        <th>Company</th>
+        <td><input type="text" class="form-control" id="company" name="company" [(ngModel)]="contact.company"></td>
+      </tr>
+      
+      <tr>
+        <th></th>
+        <td><button class="btn btn-primary" type="submit">Save Contact</button>
+          &nbsp;<a [routerLink]="['/Phone-Book']" type="button" class="btn btn-default">Back</a></td>
+      </tr>
+  </table>
+</form>

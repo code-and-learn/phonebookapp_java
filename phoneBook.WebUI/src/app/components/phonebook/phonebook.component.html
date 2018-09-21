@@ -1,0 +1,24 @@
+<h3>My Phone Book</h3>
+  
+<a [routerLink]="['/Add-Contact']" type="button" class="btn btn-info">Add New Contact</a>
+            
+  <table class="table table-striped"  *ngIf="phoneBook?.length > 0">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>IsFavorite</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let contact of phoneBook">
+      <tr>
+        <td>{{contact.contactName}}</td>
+        <td>{{contact.isFavorite}}</td>
+        <td><a [routerLink]="['/Contact-Details', contact.id]" type="button" class="btn btn-primary">Details</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="alert alert-info" style="margin-top:20px;" *ngIf="phoneBook?.length == 0">
+      No contacts added yet. Create some contacts to see them here.
+    </div>

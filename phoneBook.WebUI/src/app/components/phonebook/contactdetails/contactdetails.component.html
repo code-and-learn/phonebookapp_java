@@ -1,0 +1,64 @@
+<h2>{{contact.contactName}}</h2>
+             
+  <table class="table table-striped">
+    
+      <tr>
+        <th>Title</th>
+        <td>{{contact.title}}</td>
+      </tr>
+      <tr>
+        <th>Address</th>
+        <td>{{contact.address}}</td>
+      </tr>
+      <tr>
+        <th>Company</th>
+        <td>{{contact.company}}</td>
+      </tr>
+      <tr>
+        <th>Contacts</th>
+        <td>
+          <table class="table table-striped" *ngIf="contact.ContactList?.length > 0">
+              <tbody *ngFor="let contactlist of contact.ContactList">
+                <tr>
+                  <th>{{contactlist.contactTypeName}}</th>
+                  <td>{{contactlist.contactInfo}}</td>
+                  <td> <button (click)="removecontactinfo(contactlist.id)" type="button" class="btn btn-warning">Delete</button> </td>
+                </tr>
+            </tbody>
+            
+          </table>
+          <div class="alert alert-info" *ngIf="contact.ContactList?.length == 0">
+              No phone / email added for this contact. Add a phone or email to see them here.
+            </div>
+
+            <div class="alert alert-info">
+          <h4>Add New Phone / Email</h4>
+          <form (ngSubmit)="addphoneoremailtocontact()">
+          <table style="width:100%" class="table table-striped">
+              <tr>
+                
+                <td>
+                  <b>Contact Type</b>
+                  <select class="form-control" id="newContactType" name="newContactType" [(ngModel)]="newContactType">
+                    <option *ngFor="let contactType of contactTypes" value="{{contactType.id}}">{{contactType.name}}</option>
+                  </select>
+                
+                  <b>Contact Info</b>
+                  <input type="text" class="form-control" [(ngModel)]="newContact" name="newContact" id="newContact">
+                <br>
+                <button type="submit" class="btn btn-primary">Add</button>
+                </td>
+                
+              </tr>
+            </table>
+          </form>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <th></th>
+        <td><a [routerLink]="['/Edit-Contact', contact.id]" type="button" class="btn btn-primary">Edit Contact</a>
+          &nbsp;<a [routerLink]="['/Phone-Book']" type="button" class="btn btn-default">Back</a></td>
+      </tr>
+  </table>
+  

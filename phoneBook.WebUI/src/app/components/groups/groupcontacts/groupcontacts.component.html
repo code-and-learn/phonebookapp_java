@@ -1,0 +1,52 @@
+<h3>Group Contacts - Family Group</h3>
+  
+<button (click)="getContactsNotInGroup(groupId)" type="button" class="btn btn-info">Add More Contacts</button>
+            
+  <table class="table table-striped" style="marging-top:20px;" *ngIf="groupContacts?.length > 0">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>IsFavorite</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody *ngFor="let contact of groupContacts">
+        <tr>
+          <td>{{contact.contactName}}</td>
+          <td>{{contact.isFavorite}}</td>
+          <td><a [routerLink]="['/Contact-Details', contact.id]" type="button" class="btn btn-primary">Details</a>
+            &nbsp;<button (click)="removecontactfromgroup(contact.id, groupId)" type="button" class="btn btn-danger">Remove</button></td>
+        </tr>
+      </tbody>
+
+    
+  </table>
+
+  <div class="alert alert-info" style="margin-top:20px;" *ngIf="groupContacts?.length == 0">
+      No contacts added to this group. Please add some contacts to see them here.
+    </div>
+
+    <div class="alert alert-info" style="margin-top:20px;" *ngIf="contactsNotInGroup?.length == 0">
+        No contacts to add to this group. Either you do not have any contacts in your phone book or all your contacts are already in this group.
+      </div>
+
+  <div *ngIf="contactsNotInGroup?.length>0">
+    <h4>Select Contacts To Add In The Group</h4>
+      <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>IsFavorite</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let contact of contactsNotInGroup">
+            <tr>
+              <td>{{contact.contactName}}</td>
+              <td>{{contact.isFavorite}}</td>
+              <td><button (click)="addcontacttogroup(groupId, contact.id)" type="button" class="btn btn-primary">Add To Group</button></td>
+            </tr>
+          </tbody>
+        </table>
+  </div>
